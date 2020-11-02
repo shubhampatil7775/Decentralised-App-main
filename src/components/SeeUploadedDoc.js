@@ -13,16 +13,16 @@ class SeeUploadedDoc extends Component {
           RequestLength:null,
           Stunam:null,
           consthash:null
-        } 
-        
+        }
+
       }
-  
-  
+
+
       async componentWillMount(){
               await this.loadWeb3()
       }
-      
-      
+
+
       async loadWeb3(){
           if(window.ethereum){
               window.web3=new Web3(window.ethereum);//new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));   //new Web3(window.ethereum);
@@ -39,7 +39,7 @@ class SeeUploadedDoc extends Component {
           this.state.sch = new window.web3.eth.Contract(Sch.abi,Sch.networks['5777'].address);
           this.ViewStuDocLength();
       }
-    
+
 
 
       ViewStuDocLength() {
@@ -47,14 +47,14 @@ class SeeUploadedDoc extends Component {
         this.state.sch.methods.viewDocLength(this.state.currentuser).call({from:this.state.currentuser},(error,result)=>{
             if(!error)
             {
-                
+
                this.state.RequestLength=Number(result);
                console.log(this.state.RequestLength)
                var i=0;
                for(;i<this.state.RequestLength;i++)
-               this.loop(i); 
-                
-                
+               this.loop(i);
+
+
             }
             else
             {
@@ -71,7 +71,7 @@ class SeeUploadedDoc extends Component {
         };
 
 
-      
+
       ViewUploadedDoc(index) {
         this.state.sch.methods.getstudoc(this.state.currentuser,index).call({from:this.state.currentuser},(error,result)=>{
           console.log(result)
@@ -79,39 +79,39 @@ class SeeUploadedDoc extends Component {
         {
             const tryTable=document.getElementById('requestlistchild');
             const table=tryTable.getElementsByTagName('tbody')[0];
-            
+
             var row1=table.insertRow();
-                    
-                       
+
+
             var col1=row1.insertCell(0);
             var newText1  = document.createElement('span');
             newText1.innerHTML=result[0];
             col1.appendChild(newText1);
-            
+
             var col1=row1.insertCell(1);
             var newText1  = document.createElement('span');
-           
+
               newText1.innerHTML=result[1];
               newText1.style.color="green"
-          
-           
+
+
             col1.appendChild(newText1);
-    
-            
+
+
             var col1=row1.insertCell(2);
             var newText1  = document.createElement('span');
-    
+
             var temnewText  = document.createElement('BUTTON');
             temnewText.innerHTML="View";
-            temnewText.onclick=()=>{ 
+            temnewText.onclick=()=>{
             document.location = "https://ipfs.io/ipfs/"+result[2];
             };
-            
+
             newText1.appendChild(temnewText);
             col1.appendChild(newText1);
-        
-            
-            
+
+
+
         }
     })
 }
@@ -126,8 +126,8 @@ class SeeUploadedDoc extends Component {
                                 <h3 className="panel-title">View Requested Data</h3>
                             </div>
                             <div className="panel-body">
-                                
-                                
+
+
                                 <table className="table table-bordered" id="requestlistchild">
                                 <tbody>
                                     <tr>
@@ -135,8 +135,8 @@ class SeeUploadedDoc extends Component {
                                     </tr>
                                 </tbody>
                                 </table>
-                                
-              
+
+
                             </div>
                         </div>
                     </div>
