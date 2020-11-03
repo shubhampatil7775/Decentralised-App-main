@@ -19,7 +19,8 @@ class ViewRequestDetail extends Component {
          scholor: null, 
          academics: null, 
          dochash:null, 
-         status:null
+         status:null,
+         dindex:null
         } 
         
 
@@ -52,8 +53,22 @@ class ViewRequestDetail extends Component {
       ViewRequestDetails=async()=> {
 
         var requestlistchild = document.getElementById("requestlistchild");
+        this.state.sch.methods.ViewRequestLength(this.state.currentuser).call({from:this.state.currentuser},(error,result)=>{
+            if(!error)
+            {   
+                console.log(result)
+            }
+        })
 
-          this.state.sch.methods.ViewRequestDetail(this.state.currentuser,0).call({from:this.state.currentuser},(error,result)=>{
+        this.state.sch.methods.getAdmin().call({from:this.state.currentuser},(error,result)=>{
+            if(!error)
+            {   
+                console.log(result)
+                this.state.dindex=Number(result)
+                console.log(this.state.dindex)
+         
+
+          this.state.sch.methods.ViewRequestDetail(this.state.currentuser,result).call({from:this.state.currentuser},(error,result)=>{
             //console.log(this.props.inde)
             if(!error)
 		    {
@@ -79,7 +94,8 @@ class ViewRequestDetail extends Component {
 			if(this.state.academics == 1)
 			{
 				var listHTML = "<tr><td width='80%'>Academics</td><td width='20%' align='center'><input type='checkbox' id='chk_academics' /></td></tr>";
-				requestlistchild.insertAdjacentHTML('beforeend',listHTML);
+                requestlistchild.insertAdjacentHTML('beforeend',listHTML);
+                console.log(document.getElementById("chk_academics"))
 			}
 
 		}
@@ -89,6 +105,8 @@ class ViewRequestDetail extends Component {
 		}
             
         })
+    }
+});
       }
 
 
@@ -155,7 +173,7 @@ class ViewRequestDetail extends Component {
             Status = 2;
         }
  
-        this.state.sch.methods.UpdateRequestStatus(this.state.currentuser,0,this.state.bonafide,this.state.scholor,this.state.academics,Status).send({ from: this.state.currentuser }).then((r) => {
+        this.state.sch.methods.UpdateRequestStatus(this.state.currentuser,this.state.dindex,this.state.bonafide,this.state.scholor,this.state.academics,Status).send({ from: this.state.currentuser }).then((r) => {
             console.log(r);
             //return this.setState(r)
             
@@ -178,17 +196,15 @@ class ViewRequestDetail extends Component {
                             <div className="panel-body">
                                 <table className="table table-bordered" id="requestlistparent">
                                     <tbody>
-                                    <tr>
-                                        <td width="40" align="center"><b>Student Name</b></td>
-                                        <td width="40" align="center"><b>{this.state.Stunam}</b></td>
-                                    </tr>
+                                    
                                     </tbody>
                                 </table>
                                 
                                 <table className="table table-bordered" id="requestlistchild">
                                 <tbody>
                                     <tr>
-                                        <td colSpan="2" align="center"><b>Requested Access</b></td>
+                                        <td  align="center"><b>Requested Document</b></td>
+                                        <td  align="center"><b>Mark</b></td>
                                     </tr>
                                 </tbody>
                                 </table>

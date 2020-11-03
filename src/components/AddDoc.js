@@ -83,32 +83,32 @@ async loadWeb3(){
                     <div className="col-md-4 center-block">
                         <div className="panel panel-info">
                             <div className="panel-heading">
-                                <h3 className="panel-title">Add Driving Licence Details</h3>
+                                <h3 className="panel-title">Add Documents Details</h3>
                             </div>
                             <div className="panel-body">
 
                             <div className="form-group">
 					
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtFullName">Name as per Driving Licence</label>
+						<label className="control-label" htmlFor="txtFullName">Name of Document</label>
 						<input className="form-control" name="txtFullName" id="txtFullName" type="text" placeholder="Name"/>
 					</div>
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtDOB">DOB as per Driving Licence</label>
+						<label className="control-label" htmlFor="txtDOB">Document Added Date</label>
 						<input className="form-control" name="txtDOB" id="txtDOB" type="text" placeholder="DD/MM/YYYY"/>
 					</div>
 				
                    
                     <div class="form-group">
-						<label class="control-label" for="txtFinanceAmount" >Attach Driving Licence</label>
+						<label class="control-label" for="txtFinanceAmount" >Attach Document</label>
 						<input type="file" name="invoicefile" id="invoicefile"  onChange={this.captureFile}/>
 					</div>
 					   
                                 
                     <div className="aligncenter">
-                        <button type="button" className="btn btnsm btn-primary" onClick={this.AddData}>Add Driving Licence</button>
+                        <button type="button" className="btn btnsm btn-primary" onClick={this.AddData}>Add Document</button>
                     </div>
-                    <img src={`https://ipfs.infura.io/ipfs/${this.state.doc}`} />
+                  
                     
                             </div>
                         </div>

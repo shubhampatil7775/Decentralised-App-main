@@ -147,7 +147,7 @@ class AddUserData extends Component {
                     <div className="aligncenter">
                        
                     </div>
-                    <img src={`https://ipfs.infura.io/ipfs/${this.state.doc}`} />
+                   
                     
                             </div>
                         </div>

@@ -15,9 +15,9 @@ import ViewRequestDetail from './components/ViewRequestDetail';
 import ViewRequestStu from './components/ViewRequestStu';
 import ViewRequestDetailStu from './components/ViewRequestDetailStu';
 import AddUserData from './components/AddUserData';
-import New from './components/New';
 import SeeUploadedDoc from './components/SeeUploadedDoc';
 import SendDoc from './components/SendDoc';
+import SeeStudentSendDoc from './components/SeeStudentSendDoc';
 
 
 
@@ -123,9 +123,6 @@ class App extends Component {
              <Route path="/AddUserData"  component = {AddUserData}/> 
           </Switch>
 
-          <Switch>
-             <Route path="/New"  component = {New}/> 
-          </Switch>
 
           <Switch>
              <Route path="/SeeUploadedDoc"  component = {SeeUploadedDoc}/> 
@@ -133,6 +130,10 @@ class App extends Component {
 
           <Switch>
              <Route path="/SendDoc"  component = {SendDoc}/> 
+          </Switch>
+
+          <Switch>
+             <Route path="/SeeStudentSendDoc"  component = {SeeStudentSendDoc}/> 
           </Switch>
 
 

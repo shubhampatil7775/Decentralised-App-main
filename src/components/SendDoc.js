@@ -48,7 +48,7 @@ class SendDoc extends Component {
             if(!error)
             {
 
-               this.state.RequestLength=Number(result);
+               this.state.RequestLength=Number(result[0]);
                console.log(this.state.RequestLength)
                var i=0;
                for(;i<this.state.RequestLength;i++)
@@ -117,10 +117,54 @@ class SendDoc extends Component {
         })
     }
 
-    Tocheck=async()=> {
-        var stuname=document.getElementById("txtStudentName")
-        var studoc=new Array(this.state.RequestLength)
-        console.log("hello")
+    Tocheck=async()=>{
+
+        var stuname=document.getElementById("txtStudentName");
+        var appliedfor=document.getElementById("txtUserApplied")
+        var check0=0;
+        var check1=0;
+        var check2=0;
+        var check3=0;
+        var check4=0;
+
+        if(document.getElementById("tick0"))
+        {
+            if(document.getElementById("tick0").checked)
+            check0=1;
+        }
+
+        
+        if(document.getElementById("tick1"))
+        {   
+            if(document.getElementById("tick1").checked)
+            check1=1;
+        }
+
+        
+        if(document.getElementById("tick2"))
+        {
+            if(document.getElementById("tick2").checked)
+            check2=1;
+        }
+
+        
+        if(document.getElementById("tick3"))
+        {
+            if(document.getElementById("tick3").checked)
+            check3=1;
+        }
+
+        
+        if(document.getElementById("tick4"))
+        {
+            if(document.getElementById("tick4").checked)
+            check4=1;
+        }
+
+        this.state.sch.methods.setTick(this.state.currentuser,stuname.value,appliedfor.value,check0,check1,check2,check3,check4).send({ from: this.state.currentuser }).then((r) => {
+            console.log(r)
+        })
+
 
 
     }
@@ -135,13 +179,18 @@ class SendDoc extends Component {
 		<div className="col-md-4 center-block">
 			<div className="panel panel-info">
 				<div className="panel-heading">
-					<h3 className="panel-title">Request Access</h3>
+					<h3 className="panel-title">Send Documents </h3>
 				</div>
 				<div className="panel-body">
 
 					<div className="form-group">
 						<label className="control-label" htmlFor="txtStudentName">Student UserName</label>
 						<input className="form-control" name="txtStudentName" id="txtStudentName" type="text"  placeholder="Student Name"/>
+					</div>
+
+                    <div className="form-group">
+						<label className="control-label" htmlFor="txtUserApplied">Applied For</label>
+						<input className="form-control" name="txtUserApplied" id="txtUserApplied" type="text" placeholder="Apply For"/>
 					</div>
 
 					<div className="form-group">
@@ -152,14 +201,14 @@ class SendDoc extends Component {
                     <table className="table table-bordered" id="requestlistchild">
                                 <tbody>
                                     <tr>
-                                        <td colSpan="2" align="center"><b>Tick the Boxes</b></td>
+                                        
                                     </tr>
                                 </tbody>
                     </table>
 
 
 					<div className="aligncenter">
-						<button type="button" className="btn btnsm btn-primary" onClick={this.Tocheck}>Request Access</button>
+						<button type="button" className="btn btnsm btn-primary" onClick={this.Tocheck}>Send Documents</button>
 					</div>
 
 				</div>

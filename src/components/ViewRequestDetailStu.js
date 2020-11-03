@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
-import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
+
 
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -46,169 +46,186 @@ class ViewRequestDetailStu extends Component {
  
      
       ViewRequestDetails=async()=> {
-          this.state.sch.methods.viewDoc(this.state.currentuser,0).call({from:this.state.currentuser},(error,result)=>{
+
+        this.state.sch.methods.getStu().call({from:this.state.currentuser},(error,result)=>{
+        
+          this.state.sch.methods.viewDoc(this.state.currentuser,result).call({from:this.state.currentuser},(error,result)=>{
             //console.log(this.props.inde)
             if(!error)
-        {
-         
-      
-      var bonafide = Number(result[0]); 
-      var bonafide_Value = result[1]; 
+                {
+                
+              
+              var bonafide = Number(result[0]); 
+              var bonafide_Value = result[1]; 
 
-      var scholor=Number(result[2]);
-      var scholor_Value=result[3];
+              var scholor=Number(result[2]);
+              var scholor_Value=result[3];
 
 
-      var academics=Number(result[4]);
-      var academics_Value=result[5];
+              var academics=Number(result[4]);
+              var academics_Value=result[5];
 
-      //console.log(result[1]);
-      //console.log(result[0]);
-      //console.log(result[2]);
-     // console.log(result[3]);
+              //console.log(result[1]);
+              //console.log(result[0]);
+              //console.log(result[2]);
+            // console.log(result[3]);
 
+                    
             
-    
-      if(bonafide > 0)
-      {   
-        const tryTable=document.getElementById('requestlistchild');
-        const table=tryTable.getElementsByTagName('tbody')[0];
-        
-        var row1=table.insertRow();
+              if(bonafide > 0)
+              {   
+                const tryTable=document.getElementById('requestlistchild');
+                const table=tryTable.getElementsByTagName('tbody')[0];
                 
-                   
-        var col1=row1.insertCell(0);
-        var newText1  = document.createElement('span');
-        newText1.innerHTML="Required Document";
-        col1.appendChild(newText1);
-        
-        var col1=row1.insertCell(1);
-        var newText1  = document.createElement('span');
-        if(bonafide == 2)
-        {
-          newText1.innerHTML="Approved";
-          newText1.style.color="green"
-        }
-        else
-        {
-          newText1.innerHTML="Rejected";
-        }
-        col1.appendChild(newText1);
+                var row1=table.insertRow();
+                        
+                          
+                var col1=row1.insertCell(0);
+                var newText1  = document.createElement('span');
+                newText1.innerHTML="Bonafide";
+                col1.appendChild(newText1);
+                
+                var col1=row1.insertCell(1);
+                var newText1  = document.createElement('span');
+                col1.appendChild(newText1);
+                if(bonafide == 2)
+                {
+                  newText1.innerHTML="Approved";
+                  newText1.style.color="green"
 
                 
-        var col1=row1.insertCell(2);
-        var newText1  = document.createElement('span');
+                }
+                else
+                {
+                  newText1.innerHTML="Rejected";
+                }
+                if(bonafide==2)
+                {
+                  col1.appendChild(newText1);
 
-        var temnewText  = document.createElement('BUTTON');
-        temnewText.innerHTML="View";
-        temnewText.onclick=()=>{ 
-            document.location = "https://ipfs.io/ipfs/"+bonafide_Value
-        };
-        
-        newText1.appendChild(temnewText);
-        col1.appendChild(newText1);
-    
-        this.state.consthash=bonafide_Value;
-        
-  
-      }
+                          
+                  var col1=row1.insertCell(2);
+                  var newText1  = document.createElement('span');
 
-      if(scholor > 0)
-      {   
-        const tryTable=document.getElementById('requestlistchild');
-        const table=tryTable.getElementsByTagName('tbody')[0];
-        
-        var row1=table.insertRow();
+                  var temnewText  = document.createElement('BUTTON');
+                  temnewText.innerHTML="View";
+                  temnewText.onclick=()=>{ 
+                      document.location = "https://ipfs.io/ipfs/"+bonafide_Value
+                  };
+                  
+                  newText1.appendChild(temnewText);
+                  col1.appendChild(newText1);
+              
+                  this.state.consthash=bonafide_Value;
+              }
+
                 
-                   
-        var col1=row1.insertCell(0);
-        var newText1  = document.createElement('span');
-        newText1.innerHTML="Required Document";
-        col1.appendChild(newText1);
-        
-        var col1=row1.insertCell(1);
-        var newText1  = document.createElement('span');
-        if(scholor == 2)
-        {
-          newText1.innerHTML="Approved";
-          newText1.style.color="green"
-        }
-        else
-        {
-          newText1.innerHTML="Rejected";
-        }
-        col1.appendChild(newText1);
+          
+              }
 
-        
-        var col1=row1.insertCell(2);
-        var newText1  = document.createElement('span');
-
-        var temnewText  = document.createElement('BUTTON');
-        temnewText.innerHTML="View";
-        temnewText.onclick=()=>{ 
-        document.location = "https://ipfs.io/ipfs/"+scholor_Value
-        };
-        
-        newText1.appendChild(temnewText);
-        col1.appendChild(newText1);
-    
-        this.state.consthash=scholor_Value;
-        
-  
-      }
-      
-      if(academics > 0)
-      {   
-        const tryTable=document.getElementById('requestlistchild');
-        const table=tryTable.getElementsByTagName('tbody')[0];
-        
-        var row1=table.insertRow();
+              if(scholor > 0)
+              {   
+                const tryTable=document.getElementById('requestlistchild');
+                const table=tryTable.getElementsByTagName('tbody')[0];
                 
-                   
-        var col1=row1.insertCell(0);
-        var newText1  = document.createElement('span');
-        newText1.innerHTML="Required Document";
-        col1.appendChild(newText1);
-        
-        var col1=row1.insertCell(1);
-        var newText1  = document.createElement('span');
-        if(academics == 2)
-        {
-          newText1.innerHTML="Approved";
-          newText1.style.color="green"
-        }
-        else
-        {
-          newText1.innerHTML="Rejected";
-        }
-        col1.appendChild(newText1);
+                var row1=table.insertRow();
+                        
+                          
+                var col1=row1.insertCell(0);
+                var newText1  = document.createElement('span');
+                newText1.innerHTML="Scholorship";
+                col1.appendChild(newText1);
+                
+                var col1=row1.insertCell(1);
+                var newText1  = document.createElement('span');
+                col1.appendChild(newText1);
+                if(scholor == 2)
+                {
+                  newText1.innerHTML="Approved";
+                  newText1.style.color="green"
+                }
+                else
+                {
+                  newText1.innerHTML="Rejected";
+                }
+                if(scholor==2)
+                {
+                col1.appendChild(newText1);
 
                 
                 var col1=row1.insertCell(2);
                 var newText1  = document.createElement('span');
 
                 var temnewText  = document.createElement('BUTTON');
-        temnewText.innerHTML="View";
-        temnewText.onclick=()=>{ 
-          document.location = "https://ipfs.io/ipfs/"+academics_Value
+                temnewText.innerHTML="View";
+                temnewText.onclick=()=>{ 
+                document.location = "https://ipfs.io/ipfs/"+scholor_Value
                 };
-               
-                newText1.appendChild(temnewText);
-        col1.appendChild(newText1);
-    
-        this.state.consthash=academics_Value;
-        
-  
-      }
-      
                 
-      }
-      else
-      {
-          console.log(error);
-      }
+                newText1.appendChild(temnewText);
+                col1.appendChild(newText1);
+            
+                this.state.consthash=scholor_Value;
+                
+              }
+              }
+              
+              if(academics > 0)
+              {   
+                const tryTable=document.getElementById('requestlistchild');
+                const table=tryTable.getElementsByTagName('tbody')[0];
+                
+                var row1=table.insertRow();
+                        
+                          
+                var col1=row1.insertCell(0);
+                var newText1  = document.createElement('span');
+                newText1.innerHTML="Academics";
+                col1.appendChild(newText1);
+                
+                var col1=row1.insertCell(1);
+                var newText1  = document.createElement('span');
+                col1.appendChild(newText1);
+                if(academics == 2)
+                {
+                  newText1.innerHTML="Approved";
+                  newText1.style.color="green"
+                }
+                else
+                {
+                  newText1.innerHTML="Rejected";
+                }
+                if(academics==2)
+                {
+                col1.appendChild(newText1);
+
+                        
+                        var col1=row1.insertCell(2);
+                        var newText1  = document.createElement('span');
+
+                        var temnewText  = document.createElement('BUTTON');
+                temnewText.innerHTML="View";
+                temnewText.onclick=()=>{ 
+                  document.location = "https://ipfs.io/ipfs/"+academics_Value
+                        };
+                      
+                        newText1.appendChild(temnewText);
+                col1.appendChild(newText1);
+            
+                this.state.consthash=academics_Value;
+                      }
+          
+              }
+              
+                        
+              }
+              else
+              {
+                  console.log(error);
+              }
           
       })
+    })
     }
 
   
@@ -224,13 +241,16 @@ class ViewRequestDetailStu extends Component {
                             <div className="panel-heading">
                                 <h3 className="panel-title">View Requested Data</h3>
                             </div>
+                            <br></br>
                             <div className="panel-body">
                                 
                                 
                                 <table className="table table-bordered" id="requestlistchild">
                                 <tbody>
                                     <tr>
-                                        <td colSpan="2" align="center"><b>Requested Access</b></td>
+                                    <td width="40" align="center"><b>Document Name</b></td>
+                                            <td width="40" align="center"><b>Approval Status</b></td>
+                                            <td width="20" align="center"><b>View Doc</b></td>
                                     </tr>
                                 </tbody>
                                 </table>

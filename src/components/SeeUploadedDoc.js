@@ -48,7 +48,7 @@ class SeeUploadedDoc extends Component {
             if(!error)
             {
 
-               this.state.RequestLength=Number(result);
+               this.state.RequestLength=Number(result[0]);
                console.log(this.state.RequestLength)
                var i=0;
                for(;i<this.state.RequestLength;i++)
@@ -123,15 +123,25 @@ class SeeUploadedDoc extends Component {
                     <div className="col-md-6 center-block">
                         <div className="panel panel-info">
                             <div className="panel-heading">
-                                <h3 className="panel-title">View Requested Data</h3>
+                                <h3 className="panel-title">Added Documents</h3>
                             </div>
+                            <br></br>
                             <div className="panel-body">
 
 
                                 <table className="table table-bordered" id="requestlistchild">
                                 <tbody>
-                                    <tr>
-                                        <td colSpan="2" align="center"><b>Requested Access</b></td>
+                                    <tr>  
+                                    
+                                    <th>
+                                      <span>Document Name</span>  
+                                    </th>
+                                    <th>
+                                      <span>Uploaded Date</span>  
+                                    </th>
+                                    <th>
+                                      <span>Document</span>  
+                                    </th>
                                     </tr>
                                 </tbody>
                                 </table>

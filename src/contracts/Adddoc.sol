@@ -3,7 +3,8 @@ pragma solidity >=0.4.22 <0.8.0;
 
 contract Adddoc {
 
-    string bonafidehai;
+    uint stucount;
+    uint admincount;
 
     struct Studoc{
         string docname;
@@ -25,6 +26,16 @@ contract Adddoc {
         uint status;
     }
 
+    struct Tick{
+        string stuname;
+        string appliedfor;
+        uint var0;
+        uint var1;
+        uint var2;
+        uint var3;
+        uint var4;
+    }
+
    
     struct Bonafidekastruct{
         string bonafidekistring;
@@ -40,17 +51,37 @@ contract Adddoc {
     mapping(address => Studoc[]) Stumap;
     mapping(address => UserInfo[]) UserMap;
     mapping(address => Request[]) RequestMap;
+    mapping(address => Tick[]) Tickmap;
 
     mapping(address => Bonafidekastruct[]) Bonamap;
     mapping(address => Scholorkastruct[]) Scholmap;
     mapping(address => Academicskastruct[]) Acamap;
 
-    function set(string memory _memeHash) public {
-        bonafidehai = _memeHash;
+    function setStu(uint _memeHash) public {
+        stucount = _memeHash;
     }
 
-    function get() public view returns (string memory) {
-        return bonafidehai;
+    function getStu() public view returns (uint) {
+        return stucount;
+    }
+
+    function setAdmin(uint _memeHash) public {
+        admincount = _memeHash;
+    }
+
+    function getAdmin() public view returns (uint) {
+        return admincount;
+    }
+
+
+
+    function setTick(address UserAddress,string memory _stuname,string memory _appliedfor,uint _var0,uint _var1,uint _var2,uint _var3,uint _var4) public {
+        Tickmap[UserAddress].push(Tick(_stuname,_appliedfor,_var0,_var1,_var2,_var3,_var4));
+    }
+
+    function getTick(address UserAddress,uint index) view public returns(string memory,string memory,uint,uint,uint,uint,uint) {
+        Tick memory ThisTick=Tickmap[UserAddress][index];
+        return(ThisTick.stuname,ThisTick.appliedfor,ThisTick.var0,ThisTick.var1,ThisTick.var2,ThisTick.var3,ThisTick.var4);
     }
 
     function setstudoc(address UserAddress,string memory _docname,string memory _date,string memory _dochash) public {
@@ -62,6 +93,7 @@ contract Adddoc {
         return(ThisUser.docname,ThisUser.date,ThisUser.dochash);
 
     }
+
 
 
     function AddUser(address UserAddress,string memory FullName,string memory EmailID,string memory MobileNo) public
@@ -103,9 +135,9 @@ contract Adddoc {
         return (ThisRequest.bonafide,ThisBona.bonafidekistring,ThisRequest.scholor,ThisSchol.scholorkistring,ThisRequest.academics,ThisAca.academicskistring);
     }
 
-    function viewDocLength(address UserAddress) view public returns(uint)
+    function viewDocLength(address UserAddress) view public returns(uint,uint)
     {
-        return Stumap[UserAddress].length;
+        return (Stumap[UserAddress].length,Tickmap[UserAddress].length);
     }
 
     

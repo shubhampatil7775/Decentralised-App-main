@@ -98,36 +98,136 @@ class ViewRequest extends Component {
                 
                 if(ApprovalStatus == "1")
                 {
-                    ApprovalStatusText = "Waiting Approval";
+                ApprovalStatusText = "Waiting Approval";
 			
                 this.state.ind=index;
                 this.state.Stunam=StuName;
-                //console.log(this.state.ind)
+                console.log(this.state.ind)
+
+                const tryTable=document.getElementById('requestlistchild');
+                const table=tryTable.getElementsByTagName('tbody')[0];
+                
+                var row1=table.insertRow();
+                        
+                        
+                var col1=row1.insertCell(0);
+                var newText1  = document.createElement('span');
+                newText1.innerHTML=StuName;
+                col1.appendChild(newText1);
+                
+                var col1=row1.insertCell(1);
+                var newText1  = document.createElement('span');
+                
+                newText1.innerHTML=ApprovalStatusText;
+                
+                col1.appendChild(newText1);
+
+                        
+                var col1=row1.insertCell(2);
+                var newText1  = document.createElement('span');
 
                 var temnewText  = document.createElement('BUTTON');
-                temnewText.innerHTML="Accept";
+                temnewText.innerHTML="View";
                 temnewText.onclick=()=>{ 
-                };
-                var listHTML = "<tr><td>"+StuName+"</td><td>"+ApprovalStatusText+"</td><td align='center'>"+temnewText.outerHTML+"</td></tr>";
+                    this.state.sch.methods.setAdmin(index).send({ from: this.state.currentuser }).then((r) => {
                            
+                            //console.log(index)
+                            document.location = "ViewRequestDetail"
+                        
+                      
+                    });
+               
+                
+                    };
+                    
+                newText1.appendChild(temnewText);
+                col1.appendChild(newText1);
+            
+            
+                                
                 }
                 else if(ApprovalStatus == "2")
                 {
                     ApprovalStatusText = "Partially Approved";
-                    var listHTML = "<tr><td>"+StuName+"</td><td>"+ApprovalStatusText+"</td><td align='center'>&nbsp;</td></tr>";
+                   
+                    const tryTable=document.getElementById('requestlistchild');
+                    const table=tryTable.getElementsByTagName('tbody')[0];
+                    
+                    var row1=table.insertRow();
+                            
+                            
+                    var col1=row1.insertCell(0);
+                    var newText1  = document.createElement('span');
+                    newText1.innerHTML=StuName;
+                    col1.appendChild(newText1);
+                    
+                    var col1=row1.insertCell(1);
+                    var newText1  = document.createElement('span');
+                    
+                    newText1.innerHTML=ApprovalStatusText;
+                    
+                    col1.appendChild(newText1);
+
+                            
+                    var col1=row1.insertCell(2);
+                    
                 }
+
                 else if(ApprovalStatus == "3")
                 {
                     ApprovalStatusText = "Approved";
-                    var listHTML = "<tr><td>"+StuName+"</td><td>"+ApprovalStatusText+"</td><td align='center'>&nbsp;</td></tr>";
+                    const tryTable=document.getElementById('requestlistchild');
+                    const table=tryTable.getElementsByTagName('tbody')[0];
+                    
+                    var row1=table.insertRow();
+                            
+                            
+                    var col1=row1.insertCell(0);
+                    var newText1  = document.createElement('span');
+                    newText1.innerHTML=StuName;
+                    col1.appendChild(newText1);
+                    
+                    var col1=row1.insertCell(1);
+                    var newText1  = document.createElement('span');
+                    
+                    newText1.innerHTML=ApprovalStatusText;
+                    
+                    col1.appendChild(newText1);
+
+                            
+                    var col1=row1.insertCell(2);
+                    
+                    
+                    
                 }
+
                 else if(ApprovalStatus == "4")
                 {
                     ApprovalStatusText = "Rejected";
-                    var listHTML = "<tr><td>"+StuName+"</td><td>"+ApprovalStatusText+"</td><td align='center'>&nbsp;</td></tr>";
+                    const tryTable=document.getElementById('requestlistchild');
+                    const table=tryTable.getElementsByTagName('tbody')[0];
+                    
+                    var row1=table.insertRow();
+                            
+                            
+                    var col1=row1.insertCell(0);
+                    var newText1  = document.createElement('span');
+                    newText1.innerHTML=StuName;
+                    col1.appendChild(newText1);
+                    
+                    var col1=row1.insertCell(1);
+                    var newText1  = document.createElement('span');
+                    
+                    newText1.innerHTML=ApprovalStatusText;
+                    
+                    col1.appendChild(newText1);
+
+                            
+                    var col1=row1.insertCell(2);
+                    
                 }
                 
-                requestlistparent.insertAdjacentHTML('beforeend',listHTML);
+                
             }
             else
             {
@@ -139,6 +239,7 @@ class ViewRequest extends Component {
     handleSubmit=async(event)=> {
         event.preventDefault()
         //console.log(this.state.ind)
+       
         document.location="ViewRequestDetail"
         
     }
@@ -147,8 +248,8 @@ class ViewRequest extends Component {
     render() {
         return (
             <div> 
-                <h1>{this.state.ind}</h1>
-                <form name="IntelitixForm" onSubmit={this.handleSubmit}>
+               
+                
                 <div className="container container_body">
                     <div className="row">
                         <div className="col-md-6 center-block">
@@ -156,11 +257,11 @@ class ViewRequest extends Component {
                                 <div className="panel-heading">
                                     <h3 className="panel-title">View Access Request</h3>
                                 </div>
-                                <div className="panel-body">
+                                <div className="panel-body"  id="requestlistchild">
                                     <table className="table table-bordered" id="requestlistparent">
                                         <tbody>
                                         <tr>
-                                            <td width="40" align="center"><b>Institution Name</b></td>
+                                            <td width="40" align="center"><b>Student Name</b></td>
                                             <td width="40" align="center"><b>Approval Status</b></td>
                                             <td width="20" align="center"><b>More Info</b></td>
                                         </tr>
@@ -172,9 +273,8 @@ class ViewRequest extends Component {
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="hdnRequestIndex" name="hdnRequestIndex" ></input>
-                <input type="hidden" id="hdnInstitutionName" name="hdnInstitutionName" ></input>
-                </form>
+                
+                
             </div>
         )
     }
