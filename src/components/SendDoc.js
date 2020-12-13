@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 class SendDoc extends Component {
 
@@ -93,7 +95,7 @@ class SendDoc extends Component {
             var newText1  = document.createElement('span');
 
               newText1.innerHTML=result[0];
-              newText1.style.color="green"
+              newText1.style.color="black"
 
 
             col1.appendChild(newText1);
@@ -163,6 +165,7 @@ class SendDoc extends Component {
 
         this.state.sch.methods.setTick(this.state.currentuser,stuname.value,appliedfor.value,check0,check1,check2,check3,check4).send({ from: this.state.currentuser }).then((r) => {
             console.log(r)
+            document.location = "http://localhost:3000/Output";
         })
 
 
@@ -173,29 +176,54 @@ class SendDoc extends Component {
     render() {
         return (
             <div>
-                <form name="IntelitixForm" method="post">
+
+<div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>Send Documents</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Student">Student</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <div  style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>Send Required Documents</h3>
+            </div>  
+            <p>Decentralized College Administration system</p>
+            
+            <form name="IntelitixForm" method="post">
 <div className="container container_body">
 	<div className="row">
 		<div className="col-md-4 center-block">
 			<div className="panel panel-info">
-				<div className="panel-heading">
-					<h3 className="panel-title">Send Documents </h3>
-				</div>
+			
 				<div className="panel-body">
 
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtStudentName">Student UserName</label>
-						<input className="form-control" name="txtStudentName" id="txtStudentName" type="text"  placeholder="Student Name"/>
+						<label className="control-label" htmlFor="txtStudentName" style={{color:'#353730'}}>Student UserName</label>
+						<input className="form-control" name="txtStudentName" id="txtStudentName" type="text"  placeholder="Student Name" required/>
 					</div>
 
                     <div className="form-group">
-						<label className="control-label" htmlFor="txtUserApplied">Applied For</label>
-						<input className="form-control" name="txtUserApplied" id="txtUserApplied" type="text" placeholder="Apply For"/>
+						<label className="control-label" htmlFor="txtUserApplied" style={{color:'#353730'}}>Applied For</label>
+						<input className="form-control" name="txtUserApplied" id="txtUserApplied" type="text" placeholder="Apply For" required/>
 					</div>
 
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtUserAddress">User Blockchain ID</label>
-						<input className="form-control" name="txtUserAddress" id="txtUserAddress" type="text" placeholder="User Blockchain ID"/>
+						<label className="control-label" htmlFor="txtUserAddress" style={{color:'#353730'}}>User Blockchain ID</label>
+						<input className="form-control" name="txtUserAddress" id="txtUserAddress" type="text" placeholder="User Blockchain ID" required/>
 					</div>
 
                     <table className="table table-bordered" id="requestlistchild">
@@ -219,6 +247,11 @@ class SendDoc extends Component {
 
 </div>
 </form>
+            
+            </article>
+        </div>
+        </div>
+                
             </div>
         )
     }

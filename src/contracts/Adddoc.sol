@@ -16,6 +16,7 @@ contract Adddoc {
         string FullName;
         string EmailID;
         string MobileNo;
+        string password;
     }
 
     struct Request{
@@ -96,15 +97,15 @@ contract Adddoc {
 
 
 
-    function AddUser(address UserAddress,string memory FullName,string memory EmailID,string memory MobileNo) public
+    function AddUser(address UserAddress,string memory FullName,string memory EmailID,string memory MobileNo,string memory Password) public
     {
-        UserMap[UserAddress].push(UserInfo(FullName,EmailID,MobileNo));
+        UserMap[UserAddress].push(UserInfo(FullName,EmailID,MobileNo,Password));
     }
 
     
-    function getUser(address ins,uint UserIndex) view public returns (string memory, string memory, string memory) {
+    function getUser(address ins,uint UserIndex) view public returns (string memory, string memory, string memory,string memory) {
         UserInfo memory ThisUser=UserMap[ins][UserIndex];
-        return (ThisUser.FullName, ThisUser.EmailID, ThisUser.MobileNo);
+        return (ThisUser.FullName, ThisUser.EmailID, ThisUser.MobileNo,ThisUser.password);
     }
 
 

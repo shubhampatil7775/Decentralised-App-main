@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
 import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -58,7 +60,7 @@ class AddUserData extends Component {
         bonafide_notice=filesAdded.path
         this.state.sch.methods.AddBonafidecertificate(this.state.currentuser,bonafide_notice).send({ from: this.state.currentuser }).then((r) => {
             console.log(bonafide_notice);
-            //return this.setState(r)
+            document.location = "http://localhost:3000/Output";
             
          });
         }
@@ -68,7 +70,7 @@ class AddUserData extends Component {
             scholor_notice=filesAdded.path
             this.state.sch.methods.AddScholorcertificate(this.state.currentuser,scholor_notice).send({ from: this.state.currentuser }).then((r) => {
                 console.log(scholor_notice);
-                //return this.setState(r)
+                document.location = "http://localhost:3000/Output";
                 
              });
         }
@@ -78,7 +80,7 @@ class AddUserData extends Component {
             academics_notice=filesAdded.path
             this.state.sch.methods.AddAcademicscertificate(this.state.currentuser,academics_notice).send({ from: this.state.currentuser }).then((r) => {
                 console.log(academics_notice);
-                //return this.setState(r)
+                document.location = "http://localhost:3000/Output";
                 
              });
         }
@@ -112,35 +114,66 @@ class AddUserData extends Component {
     render() {
         return (
             <div>
+                <div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>Add Notice/Circular</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Administrator">Administrator</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <div  style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>Add Respective Notice</h3>
+            </div>
+            <p>Decentralized College Administration system</p>
+            
             <form name="IntelitixForm" onSubmit={this.onSubmit} >
             <div className="container container_body">
                 <div className="row">
                     <div className="col-md-4 center-block">
                         <div className="panel panel-info">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">Add Respective Notice</h3>
-                            </div>
+                            
                             <div className="panel-body">
 
-          <div class="form-group">
-            <label class="control-label" for="txtFinanceAmount" >Add Bonafide Notice</label>
-            <input type="file" id="bonafide"  onChange={this.captureFile}/>
-                        <button type="button"  onClick={this.AddData}>Add Bonafide Notice</button>
+          <div class="form-group" >
+              <div style={{color:'#353730'}}>
+            <label class="control-label" for="txtFinanceAmount" style={{textDecorationLine:'underline'}} style={{fontSize:25} }  >Add Bonafide Notice</label>
+            </div>
+            <input type="file" id="bonafide"  onChange={this.captureFile}/><br></br>
+                        <button  type="button" class="btn btn-primary"  onClick={this.AddData}>Add Bonafide Notice</button>
           </div>
+          
                     <br></br>
 
         
           <div class="form-group">
-            <label class="control-label" for="txtFinanceAmount" >Add Scholorship Notice</label>
-            <input type="file" id="scholor"  onChange={this.captureFile}/>
-                        <button type="button"  onClick={this.AddData}>Add Scholorship Notice</button>
+              <div style={{color:'#353730'}}>
+            <label class="control-label" for="txtFinanceAmount" style={{fontSize:25}}>Add Scholorship Notice</label>
+            </div>
+            <input type="file" id="scholor"  onChange={this.captureFile}/><br></br>
+                        <button type="button" class="btn btn-primary" onClick={this.AddData}>Add Scholorship Notice</button>
           </div>
                     <br></br>
 
                     <div class="form-group">
-            <label class="control-label" for="txtFinanceAmount" >Add Academics Notice</label>
-            <input type="file" id="academics"  onChange={this.captureFile}/>
-                        <button type="button"  onClick={this.AddData}>Add Academics Notice</button>
+                        <div style={{color:'#353730'}}>
+            <label class="control-label" for="txtFinanceAmount" style={{fontSize:25}}>Add Academics Notice</label>
+            </div>
+            <input type="file" id="academics"  onChange={this.captureFile}/><br></br>
+                        <button type="button" class="btn btn-primary" onClick={this.AddData}>Add Academics Notice</button>
           </div>
              
                                 
@@ -155,6 +188,11 @@ class AddUserData extends Component {
                 </div>
             </div>
             </form>
+            
+            </article>
+        </div>
+        </div>
+            
             </div>
         )
     }

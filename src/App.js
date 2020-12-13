@@ -18,6 +18,10 @@ import AddUserData from './components/AddUserData';
 import SeeUploadedDoc from './components/SeeUploadedDoc';
 import SendDoc from './components/SendDoc';
 import SeeStudentSendDoc from './components/SeeStudentSendDoc';
+import Output from './components/Output';
+import Loginpage from './components/Loginpage';
+import Signup from './components/Signup';
+import Duplicate from './components/Duplicate';
 
 
 
@@ -134,6 +138,23 @@ class App extends Component {
 
           <Switch>
              <Route path="/SeeStudentSendDoc"  component = {SeeStudentSendDoc}/> 
+          </Switch>
+
+          <Switch>
+             <Route path="/Output"  component = {Output}/> 
+          </Switch>
+
+          <Switch>
+             <Route path="/Login"  component = {Loginpage}/> 
+          </Switch>
+
+          
+          <Switch>
+             <Route path="/Signup"  component = {Signup}/> 
+          </Switch>
+
+          <Switch>
+             <Route path="/Home"  component = {Duplicate}/> 
           </Switch>
 
 

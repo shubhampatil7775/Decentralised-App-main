@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
 import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 class ViewRequest extends Component {
 
@@ -248,22 +250,43 @@ class ViewRequest extends Component {
     render() {
         return (
             <div> 
-               
-                
-                <div className="container container_body">
+               <div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>View Applied Students</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Administrator">Administrator</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <div  style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>List of Applied Students</h3>
+            </div>
+            <p>Decentralized College Administration system</p>
+            <div className="container container_body">
                     <div className="row">
                         <div className="col-md-6 center-block">
                             <div className="panel panel-info">
-                                <div className="panel-heading">
-                                    <h3 className="panel-title">View Access Request</h3>
-                                </div>
+                               
                                 <div className="panel-body"  id="requestlistchild">
                                     <table className="table table-bordered" id="requestlistparent">
                                         <tbody>
                                         <tr>
-                                            <td width="40" align="center"><b>Student Name</b></td>
-                                            <td width="40" align="center"><b>Approval Status</b></td>
-                                            <td width="20" align="center"><b>More Info</b></td>
+                                            <th width="40" align="center"><b>Student Name</b></th>
+                                            <th width="40" align="center"><b>Approval Status</b></th>
+                                            <th width="20" align="center"><b>More Info</b></th>
                                         </tr>
                                         </tbody>
                                         
@@ -273,6 +296,12 @@ class ViewRequest extends Component {
                         </div>
                     </div>
                 </div>
+            
+            </article>
+        </div>
+        </div>
+                
+               
                 
                 
             </div>

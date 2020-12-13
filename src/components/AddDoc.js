@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
+import Outputa from './Output';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
@@ -69,7 +72,10 @@ async loadWeb3(){
     this.state.sch.methods.setstudoc(this.state.currentuser,docname,docdate,dochash).send({ from: this.state.currentuser }).then((r) => {
       this.setState({ doc: filesAdded.cid.string }) 
       console.log(r);    
+      document.location = "http://localhost:3000/Output";
      });
+
+   
 
      
   }
@@ -77,30 +83,55 @@ async loadWeb3(){
   render() {
     return (
       <div>
-                 <form name="IntelitixForm" onSubmit={this.onSubmit} >
+        <div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>Add Documents</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Student">Student</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            <div style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>Add Required Documents</h3>
+            </div>
+            <p >Decentralized College Administration system</p>
+
+            <form name="IntelitixForm" onSubmit={this.onSubmit} >
             <div className="container container_body">
                 <div className="row">
                     <div className="col-md-4 center-block">
                         <div className="panel panel-info">
                             <div className="panel-heading">
-                                <h3 className="panel-title">Add Documents Details</h3>
+                                <h3 className="panel-title" style={{color:'#353730'}}>Add Documents Details</h3>
                             </div>
                             <div className="panel-body">
 
                             <div className="form-group">
 					
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtFullName">Name of Document</label>
-						<input className="form-control" name="txtFullName" id="txtFullName" type="text" placeholder="Name"/>
+						<label className="control-label" htmlFor="txtFullName" style={{color:'#353730'}}>Name of Document</label>
+						<input className="form-control" name="txtFullName" id="txtFullName" type="text" pattern="[A-Za-z]{3}" placeholder="Name" required/>
 					</div>
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtDOB">Document Added Date</label>
-						<input className="form-control" name="txtDOB" id="txtDOB" type="text" placeholder="DD/MM/YYYY"/>
+						<label className="control-label" htmlFor="txtDOB" style={{color:'#353730'}}>Document Added Date</label>
+						<input className="form-control" name="txtDOB" id="txtDOB" type="date" placeholder="DD/MM/YYYY" required/>
 					</div>
 				
                    
                     <div class="form-group">
-						<label class="control-label" for="txtFinanceAmount" >Attach Document</label>
+						<label class="control-label" for="txtFinanceAmount" style={{color:'#353730'}}>Attach Document</label>
 						<input type="file" name="invoicefile" id="invoicefile"  onChange={this.captureFile}/>
 					</div>
 					   
@@ -117,6 +148,11 @@ async loadWeb3(){
             </div>
             </div>
             </form>
+            
+            </article>
+        </div>
+        </div>
+                 
             </div>
             
     )

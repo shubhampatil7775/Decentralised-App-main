@@ -5,7 +5,7 @@ import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-
 import '../style/layout.css';
 import Logo from '../bc.jpg';
 
-class AddStudent extends Component {
+class Signup extends Component {
 
     constructor() {
       super();
@@ -70,12 +70,11 @@ class AddStudent extends Component {
         <div class="wrapper row1" style={{backgroundColor:'black'}}>
             <header id="header" class="hoc clear">
                 <div id="logo" class="fl_left" > 
-                <h2 style={{paddingTop: 10}}>Add Student</h2>
+                <h2 style={{paddingTop: 10}}>SignUp</h2>
                 </div>
                 <nav id="mainav" class="fl_right"> 
                 <ul class="clear">
-                <li><a href="/Administrator">Administrator</a></li>
-                <li><a href="/">Home</a></li>
+                <li><a href="/Home">Home</a></li>
                 <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
                 </ul>
                 </nav>
@@ -87,7 +86,7 @@ class AddStudent extends Component {
             <article>
             
             <div  style={{color:'#353730'}}>
-            <h3 class="heading" style={{marginTop:-100}}>Add Student's Information</h3>
+            <h3 class="heading" style={{marginTop:-100}}>Enter Your Information</h3>
             </div>  
             <p>Decentralized College Administration system</p>
             <form name="IntelitixForm" method="post"  >
@@ -115,7 +114,7 @@ class AddStudent extends Component {
                         </div>
                                   
                         <div className="aligncenter">
-                          <button type="button" className="btn btnsm btn-primary" onClick={this.Adduser}>Add</button>
+                          <button type="button" className="btn btnsm btn-primary" onClick={this.Adduser}>SignUp</button>
                           
                         </div>
                       </div>
@@ -134,4 +133,4 @@ class AddStudent extends Component {
     }
 }
 
-export default AddStudent
+export default Signup

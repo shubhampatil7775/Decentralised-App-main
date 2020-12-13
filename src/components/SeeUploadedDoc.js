@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
+
 
 class SeeUploadedDoc extends Component {
 
@@ -90,9 +93,9 @@ class SeeUploadedDoc extends Component {
 
             var col1=row1.insertCell(1);
             var newText1  = document.createElement('span');
-
               newText1.innerHTML=result[1];
               newText1.style.color="green"
+              
 
 
             col1.appendChild(newText1);
@@ -118,22 +121,46 @@ class SeeUploadedDoc extends Component {
     render() {
         return (
             <div>
-                <div className="container container_body">
+
+<div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>See Uploaded Documents</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Student">Student</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <div  style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>Your Uploaded Documents</h3>
+            </div>
+            <p>Decentralized College Administration system</p>
+            <div className="container container_body">
                 <div className="row">
                     <div className="col-md-6 center-block">
                         <div className="panel panel-info">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">Added Documents</h3>
-                            </div>
+                          
                             <br></br>
                             <div className="panel-body">
 
 
                                 <table className="table table-bordered" id="requestlistchild">
-                                <tbody>
+                                <tbody >
                                     <tr>  
                                     
-                                    <th>
+                                    <th  >
                                       <span>Document Name</span>  
                                     </th>
                                     <th>
@@ -153,6 +180,12 @@ class SeeUploadedDoc extends Component {
                 </div>
             </div>
             <input type="hidden" id="hdnDrivingLicenceHash" name="hdnDrivingLicenceHash" value=""></input>
+            
+            </article>
+        </div>
+        </div>
+
+                
             </div>
         )
     }

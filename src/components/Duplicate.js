@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react'
 import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
 import '../style/layout.css';
 import Logo from '../bc.jpg';
 
-function Home() {
+function Duplicate() {
     return (
         <div>
         <div class="wrapper row0">
@@ -15,9 +15,10 @@ function Home() {
                 </div>
                 <nav id="mainav" class="fl_right"> 
                 <ul class="clear">
-                    <li ><a href="/">Home</a></li>
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="/Login">Login</a></li>
+                    <li><a href="/Signup">Sign up</a></li>
                     <li><a href="http://www.walchandsangli.ac.in/">About us</a></li>
-                    <li ><a href="/Home">Logout</a></li>
                 </ul>
                 </nav>
             </header>
@@ -44,5 +45,4 @@ function Home() {
     )
 }
 
-export default Home;
-
+export default Duplicate

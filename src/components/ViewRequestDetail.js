@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
 import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 
 
@@ -175,7 +177,7 @@ class ViewRequestDetail extends Component {
  
         this.state.sch.methods.UpdateRequestStatus(this.state.currentuser,this.state.dindex,this.state.bonafide,this.state.scholor,this.state.academics,Status).send({ from: this.state.currentuser }).then((r) => {
             console.log(r);
-            //return this.setState(r)
+            document.location = "http://localhost:3000/Output";
             
          });
 
@@ -185,14 +187,37 @@ class ViewRequestDetail extends Component {
     render() {
         return (
             <div>
+
+<div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>View Requests</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/ViewRequest">Back</a></li>
+                  <li><a href="/Administrator">Administrator</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="http://www.walchandsangli.ac.in/">About us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <h3 class="heading" style={{marginTop:-100}}>View Requests Data</h3>
+            <p>Decentralized College Administration system</p>
             <form name="IntelitixForm" method="post" action="pubcert.asp">
             <div className="container container_body">
                 <div className="row">
                     <div className="col-md-6 center-block">
                         <div className="panel panel-info">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">View Requested Data</h3>
-                            </div>
+                          
                             <div className="panel-body">
                                 <table className="table table-bordered" id="requestlistparent">
                                     <tbody>
@@ -219,6 +244,11 @@ class ViewRequestDetail extends Component {
                 </div>
             </div>
             </form>
+            
+            </article>
+        </div>
+        </div>
+            
             </div>
         )
     }

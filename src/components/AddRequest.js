@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Web3 from 'web3';
 import Sch from '../abis/Adddoc.json';
 import {BrowserRouter as Router,Link,NavLink,Route,Redirect,Switch} from 'react-router-dom';
+import '../style/layout.css';
+import Logo from '../bc.jpg';
 
 class AddRequest extends Component {
 
@@ -67,7 +69,7 @@ class AddRequest extends Component {
 
         this.state.sch.methods.AddRequest(this.state.currentuser,_stuname,bonafide,scholor,academics,status).send({ from: this.state.currentuser }).then((r) => {
           console.log(r);
-          //return this.setState(r)
+          document.location = "http://localhost:3000/Output";
           
        });
   
@@ -80,30 +82,55 @@ class AddRequest extends Component {
     render() {
         return (
             <div>
-                <form name="IntelitixForm" method="post">
+
+<div class="wrapper row0">
+        </div>
+        <div class="wrapper row1" style={{backgroundColor:'black'}}>
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left" > 
+                <h2 style={{paddingTop: 10}}>Add Request</h2>
+                </div>
+                <nav id="mainav" class="fl_right"> 
+                <ul class="clear">
+                <li><a href="/Student">Student</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="http://www.walchandsangli.ac.in/">About Us</a></li>
+                </ul>
+                </nav>
+            </header>
+        </div>  
+
+        <div class="wrapper bgded overlay gradient" style={{backgroundImage:"url(" +Logo + ")"}}>
+        <div id="pageintro" class="hoc clear"> 
+            <article>
+            
+            <div  style={{color:'#353730'}}>
+            <h3 class="heading" style={{marginTop:-100}}>Add Request For Required Documents</h3>
+            </div>  
+            <p>Decentralized College Administration system</p>
+			
+			<form name="IntelitixForm" method="post">
 <div className="container container_body">
 	<div className="row">
 		<div className="col-md-4 center-block">
 			<div className="panel panel-info">
-				<div className="panel-heading">
-					<h3 className="panel-title">Request Access</h3>
-				</div>
+				
 				<div className="panel-body">
 
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtStudentName">Requesting Student UserName</label>
-						<input className="form-control" name="txtStudentName" id="txtStudentName" type="text"  placeholder="Student Name"/>
+						<label className="control-label" htmlFor="txtStudentName" style={{color:'#353730'}}>Requesting Student UserName</label>
+						<input className="form-control" name="txtStudentName" id="txtStudentName" type="text"  placeholder="Student Name" required/>
 					</div>
 				
 					<div className="form-group">
-						<label className="control-label" htmlFor="txtUserAddress">User Blockchain ID</label>
-						<input className="form-control" name="txtUserAddress" id="txtUserAddress" type="text" placeholder="User Blockchain ID"/>
+						<label className="control-label" htmlFor="txtUserAddress" style={{color:'#353730'}}>User Blockchain ID</label>
+						<input className="form-control" name="txtUserAddress" id="txtUserAddress" type="text" placeholder="User Blockchain ID" required/>
 					</div>
 				
 					<table className="table table-bordered" id="certlistparent">
                         <thead>
 						<tr>
-							<td colSpan="2" align="center"><b>Select the required access</b></td>
+							<th colSpan="2" align="center"><b>Select the required access</b></th>
 						</tr>
                         </thead>
 
@@ -148,6 +175,11 @@ class AddRequest extends Component {
 
 </div>
 </form>
+            
+            </article>
+        </div>
+        </div>
+                
             </div>
         )
     }
